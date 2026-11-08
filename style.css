@@ -331,3 +331,26 @@ nav a:hover {
     margin-bottom: 20px;
     color: #ccc;
 }
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #1f7a4c;
+    margin: 0 8px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+footer p {
+    font-size: 12px;
+    color: #777;
+}
