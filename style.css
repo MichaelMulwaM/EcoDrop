@@ -248,3 +248,63 @@ nav a:hover {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.testimonials-sec {
+    padding: 60px 8%;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.sub-heading {
+    color: #e06d53;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.testimonials-sec h2 {
+    font-size: 28px;
+    margin: 10px 0 40px 0;
+}
+
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.test-card {
+    background: #f7faf7;
+    border: 1px solid #e2eee7;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: left;
+}
+
+.user-profile {
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.test-card p {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.test-card h4 {
+    font-size: 14px;
+    color: #222;
+}
+
+.test-card span {
+    font-size: 12px;
+    color: #777;
+}
