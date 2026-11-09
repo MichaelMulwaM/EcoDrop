@@ -71,4 +71,24 @@
         if (filterSelect) filterSelect.addEventListener("change", renderBrowseItems);
     }
 
-    
+    function renderBrowseItems() {
+        const items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
+        const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
+        const selectedCat = filterSelect ? filterSelect.value : "All";
+
+        const filtered = items.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(searchTerm) || item.location.toLowerCase().includes(searchTerm);
+            const matchesCat = (selectedCat === "All" || item.category === selectedCat);
+            return matchesSearch && matchesCat;
+        });
+
+        itemGrid.innerHTML = "";
+        if (filtered.length === 0) {
+            itemGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No matching items found.</p>`;
+            return;
+        }
+
+        filtered.forEach(item => {
+            itemGrid.appendChild(createItemCard(item, true));
+        });
+    }
