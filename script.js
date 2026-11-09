@@ -92,3 +92,27 @@
             itemGrid.appendChild(createItemCard(item, true));
         });
     }
+
+    function createItemCard(item, showClaimBtn) {
+        const card = document.createElement("div");
+        card.className = "item-card";
+
+        card.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" class="item-card-img">
+            <span class="badge-cat">${item.category}</span>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <div class="item-location"> ${item.location}</div>
+            <div class="item-contact"> ${item.phone} |  ${item.email}</div>
+            ${showClaimBtn ? `<button class="claim-btn" data-id="${item.id}">Mark as Claimed</button>` : ''}
+        `;
+
+        if (showClaimBtn) {
+            const btn = card.querySelector(".claim-btn");
+            btn.addEventListener("click", () => {
+                claimItem(item.id);
+            });
+        }
+
+        return card;
+    }
