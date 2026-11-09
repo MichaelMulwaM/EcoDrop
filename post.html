@@ -18,6 +18,61 @@
             <a href="post.html" class="btn-green active">+ Post Item</a>
         </div>
     </header>
+
+    <main>
+        <section class="form-container">
+            <h2>Post an Item Form</h2>
+            <form id="item-form">
+                <div class="form-group">
+                    <label for="item-title">Item Title:</label>
+                    <input type="text" id="item-title" placeholder="e.g. Old Laptop Batteries, Plastic Bottles" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-cat">Category:</label>
+                    <select id="item-cat" required>
+                        <option value="E-Waste">E-Waste</option>
+                        <option value="Plastics">Plastics</option>
+                        <option value="Metals">Metals</option>
+                        <option value="Glass">Glass</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-phone">Phone Number:</label>
+                    <input type="tel" id="item-phone" placeholder="e.g. 0712345678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-email">Email Address:</label>
+                    <input type="email" id="item-email" placeholder="e.g. example@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-desc">Item Description:</label>
+                    <textarea id="item-desc" rows="3" placeholder="Provide details about the item..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-location">Pickup Location:</label>
+                    <input type="text" id="item-location" placeholder="e.g. Westlands Estate - Gate 2" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-img">Item Image (Optional):</label>
+                    <input type="file" id="item-img" accept="image/*">
+                </div>
+
+                <button type="submit" id="add-btn" class="btn-green">Post Item</button>
+            </form>
+        </section>
+
+
+
+
+    </main>
     
 </body>
 </html>
