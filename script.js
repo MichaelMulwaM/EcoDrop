@@ -116,3 +116,20 @@
 
         return card;
     }
+
+    function claimItem(id) {
+        let items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
+        let history = JSON.parse(localStorage.getItem("ecoDropHistory")) || [];
+
+        const index = items.findIndex(i => i.id === id);
+        if (index !== -1) {
+            const claimedItem = items.splice(index, 1)[0];
+            history.unshift(claimedItem);
+
+            localStorage.setItem("ecoDropItems", JSON.stringify(items));
+            localStorage.setItem("ecoDropHistory", JSON.stringify(history));
+
+            alert("Item marked as claimed and archived to History record!");
+            renderBrowseItems();
+        }
+    }
