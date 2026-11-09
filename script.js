@@ -64,4 +64,11 @@
     const searchInput = document.getElementById("search-input");
     const filterSelect = document.getElementById("filter-select");
 
+    if (itemGrid) {
+        renderBrowseItems();
+
+        if (searchInput) searchInput.addEventListener("input", renderBrowseItems);
+        if (filterSelect) filterSelect.addEventListener("change", renderBrowseItems);
+    }
+
     
