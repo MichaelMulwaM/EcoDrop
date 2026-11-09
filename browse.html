@@ -18,6 +18,30 @@
             <a href="post.html" class="btn-green">+ Post Item</a>
         </div>
     </header>
+
+    <main>
+        <section class="listings-container">
+            <h2>Available Listings</h2>
+
+            <div class="controls-bar">
+                <input type="text" id="search-input" class="search-input" placeholder="🔍 Search items by title or location...">
+                
+                <div class="filter-box">
+                    <select id="filter-select">
+                        <option value="All">All Categories</option>
+                        <option value="E-Waste">E-Waste</option>
+                        <option value="Plastics">Plastics</option>
+                        <option value="Metals">Metals</option>
+                        <option value="Glass">Glass</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="item-grid" class="item-grid"></div>
+        </section>
+    </main>
     
 </body>
 </html>
