@@ -59,3 +59,9 @@
             });
         }
     }
+
+    const itemGrid = document.getElementById("item-grid");
+    const searchInput = document.getElementById("search-input");
+    const filterSelect = document.getElementById("filter-select");
+
+    
