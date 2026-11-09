@@ -23,4 +23,24 @@
                 saveItemAndRedirect(title, category, phone, email, desc, location, imageSrc);
             }
         });
-        }
+    }
+
+    function saveItemAndRedirect(title, category, phone, email, desc, location, imageSrc) {
+        const newItem = {
+            id: Date.now(),
+            title,
+            category,
+            phone,
+            email,
+            desc,
+            location,
+            image: imageSrc
+        };
+
+        let items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
+        items.unshift(newItem);
+        localStorage.setItem("ecoDropItems", JSON.stringify(items));
+
+        alert("Item posted successfully!");
+        window.location.href = "browse.html";
+    }
