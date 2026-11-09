@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
     const itemForm = document.getElementById("item-form");
     if (itemForm) {
         itemForm.addEventListener("submit", (e) => {
@@ -12,10 +14,10 @@
             const imageInput = document.getElementById("item-img");
 
             let imageSrc = "";
-        
+
             if (imageInput.files && imageInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(uploadEvent) {
+                reader.onload = function (uploadEvent) {
                     saveItemAndRedirect(title, category, phone, email, desc, location, uploadEvent.target.result);
                 };
                 reader.readAsDataURL(imageInput.files[0]);
@@ -49,7 +51,7 @@
     if (featuredGrid) {
         const items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
         const topThree = items.slice(0, 3);
-        
+
         if (topThree.length === 0) {
             featuredGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No neighborhood drops yet. Be the first to post!</p>`;
         } else {
@@ -133,3 +135,28 @@
             renderBrowseItems();
         }
     }
+
+    const historyGrid = document.getElementById("history-grid");
+    if (historyGrid) {
+        const history = JSON.parse(localStorage.getItem("ecoDropHistory")) || [];
+
+        if (history.length === 0) {
+            historyGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No claimed items in history yet.</p>`;
+        } else {
+            historyGrid.innerHTML = "";
+            history.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "item-card";
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="item-card-img">
+                    <span class="badge-cat" style="background: #e2eee7; color: #16382b;">Claimed & Recycled</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                    <div class="item-location">📍 ${item.location}</div>
+                    <div class="item-contact">📞 ${item.phone} | ✉️ ${item.email}</div>
+                `;
+                historyGrid.appendChild(card);
+            });
+        }
+    }
+});    
