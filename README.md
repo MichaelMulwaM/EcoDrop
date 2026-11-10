@@ -54,10 +54,10 @@ EcoDrop/
   ![Home Page](images/screenshots/homepage.jpg)
 
 * **Listed Items Page:**  
-  ![Listed Items Page](images/screenshots/listings.jpg.jpg)
+  ![Listed Items Page](images/screenshots/listings.jpg)
 
   * **History Page:**  
-  ![History Page](images/screenshots/history.jpg.jpg)
+  ![History Page](images/screenshots/history.jpg)
 
 ---
 
