@@ -165,6 +165,27 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "browse.html";
     }
 
+    const featuredGrid = document.getElementById("featured-grid");
+    if (featuredGrid) {
+        const items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
+        const topThree = items.slice(0, 3);
+        
+        if (topThree.length === 0) {
+            featuredGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No neighborhood drops yet. Be the first to post!</p>`;
+        } else {
+            featuredGrid.innerHTML = "";
+            topThree.forEach(item => {
+                featuredGrid.appendChild(createItemCard(item, false));
+            });
+        }
+    }
+
+
+
+
+
+
+    
     const itemGrid = document.getElementById("item-grid");
     const searchInput = document.getElementById("search-input");
     const filterSelect = document.getElementById("filter-select");
