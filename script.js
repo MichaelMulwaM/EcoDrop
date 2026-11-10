@@ -132,6 +132,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function saveOrUpdateItem(title, category, phone, email, desc, location, imageSrc) {
+        let items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
+        const editingId = localStorage.getItem("ecoDropEditingId");
+
+        if (editingId) {
+            items = items.map(item => {
+                if (item.id == editingId) {
+                    return { ...item, title, category, phone, email, desc, location, image: imageSrc };
+                }
+                return item;
+            });
+            localStorage.removeItem("ecoDropEditingId");
+            alert("Item updated successfully!");
+        } else {
+            const newItem = {
+                id: Date.now(),
+                title,
+                category,
+                phone,
+                email,
+                desc,
+                location,
+                image: imageSrc,
+                owner: currentUser ? currentUser.email : "Anonymous"
+            };
+            items.unshift(newItem);
+            alert("Item posted successfully!");
+        }
+
+        localStorage.setItem("ecoDropItems", JSON.stringify(items));
+        window.location.href = "browse.html";
+    }
+
     const itemGrid = document.getElementById("item-grid");
     const searchInput = document.getElementById("search-input");
     const filterSelect = document.getElementById("filter-select");
