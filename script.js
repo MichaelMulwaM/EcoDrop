@@ -8,6 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    const navRight = document.querySelector(".nav-right");
+    if (navRight) {
+        if (currentUser) {
+            navRight.innerHTML = `
+                <a href="post.html" class="btn-green" style="text-decoration: none; padding: 8px 16px; font-size: 13px; white-space: nowrap;">+ Post Item</a>
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+                    <button id="logout-btn" class="btn-white" style="padding: 6px 12px; font-size: 12px; cursor: pointer;">Logout</button>
+                    <span style="font-size: 11px; color: #1f7a4c; font-weight: 500; white-space: nowrap;">👤 ${currentUser.email}</span>
+                </div>
+            `;
+            document.getElementById("logout-btn").addEventListener("click", () => {
+                localStorage.removeItem("ecoDropCurrentUser");
+                alert("Logged out successfully.");
+                window.location.href = "index.html";
+            });
+        } else {
+            navRight.innerHTML = `<a href="auth.html" class="btn-green" style="text-decoration: none; padding: 8px 16px;">+ Post Item</a>`;
+        }
+    }
+
+
 
     const itemForm = document.getElementById("item-form");
     if (itemForm) {
