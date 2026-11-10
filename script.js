@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = JSON.parse(localStorage.getItem("ecoDropCurrentUser"));
+
+    const isPostPage = window.location.pathname.includes("post.html");
+    if (isPostPage && !currentUser) {
+        alert("Please create an account or log in first to list a product.");
+        window.location.href = "auth.html";
+        return;
+    }
+
 
     const itemForm = document.getElementById("item-form");
     if (itemForm) {
@@ -152,11 +161,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="badge-cat" style="background: #e2eee7; color: #16382b;">Claimed & Recycled</span>
                     <h3>${item.title}</h3>
                     <p>${item.desc}</p>
-                    <div class="item-location">📍 ${item.location}</div>
-                    <div class="item-contact">📞 ${item.phone} | ✉️ ${item.email}</div>
+                    <div class="item-location">${item.location}</div>
+                    <div class="item-contact">${item.phone} |${item.email}</div>
                 `;
                 historyGrid.appendChild(card);
             });
         }
     }
-});    
+});   
