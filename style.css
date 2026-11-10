@@ -60,10 +60,10 @@ nav a:hover, nav a.active {
 .hero-box {
     position: relative;
     width: 100%;
-    min-height: 500px;
+    min-height: 450px;
     background-image: url('images/hero8.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: 85% center;
     display: flex;
     align-items: center;
     padding: 0 5% 0 8%;
@@ -401,4 +401,49 @@ footer {
 footer p {
     font-size: 12px;
     color: #777;
+}
+
+@media (max-width: 900px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5%;
+    }
+
+    nav {
+        position: static;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    nav a {
+        margin: 0 8px;
+        font-size: 12px;
+    }
+
+    .nav-right {
+        margin-top: 5px;
+    }
+
+    .hero-box {
+        min-height: 400px;
+        padding: 40px 5%;
+        background-position: center;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .item-grid, .test-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .form-container, .cta-banner {
+        margin: 20px 4%;
+        padding: 20px;
+    }
 }
