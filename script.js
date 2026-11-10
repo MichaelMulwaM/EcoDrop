@@ -179,12 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-
-
-
-
-
-
     
     const itemGrid = document.getElementById("item-grid");
     const searchInput = document.getElementById("search-input");
@@ -214,12 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const isLoggedIn = currentUser !== null;
         filtered.forEach(item => {
-            itemGrid.appendChild(createItemCard(item, true));
+            itemGrid.appendChild(createItemCard(item, isLoggedIn));
         });
     }
 
-    function createItemCard(item, showClaimBtn) {
+    function createItemCard(item, showActions) {
         const card = document.createElement("div");
         card.className = "item-card";
 
@@ -228,15 +223,23 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="badge-cat">${item.category}</span>
             <h3>${item.title}</h3>
             <p>${item.desc}</p>
-            <div class="item-location"> ${item.location}</div>
-            <div class="item-contact"> ${item.phone} |  ${item.email}</div>
-            ${showClaimBtn ? `<button class="claim-btn" data-id="${item.id}">Mark as Claimed</button>` : ''}
+            <div class="item-location">${item.location}</div>
+            <div class="item-contact">${item.phone} | ${item.email}</div>
+            ${showActions ? `
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="claim-btn" data-id="${item.id}" style="flex: 2;">Mark as Claimed</button>
+                    <button class="edit-btn" data-id="${item.id}" style="flex: 1; background: #e06d53; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 13px;">Edit</button>
+                </div>
+            ` : ''}
         `;
 
-        if (showClaimBtn) {
-            const btn = card.querySelector(".claim-btn");
-            btn.addEventListener("click", () => {
+        if (showActions) {
+            card.querySelector(".claim-btn").addEventListener("click", () => {
                 claimItem(item.id);
+            });
+            card.querySelector(".edit-btn").addEventListener("click", () => {
+                localStorage.setItem("ecoDropEditingId", item.id);
+                window.location.href = "post.html";
             });
         }
 
@@ -263,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const historyGrid = document.getElementById("history-grid");
     if (historyGrid) {
         const history = JSON.parse(localStorage.getItem("ecoDropHistory")) || [];
-
+        
         if (history.length === 0) {
             historyGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No claimed items in history yet.</p>`;
         } else {
@@ -276,8 +279,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="badge-cat" style="background: #e2eee7; color: #16382b;">Claimed & Recycled</span>
                     <h3>${item.title}</h3>
                     <p>${item.desc}</p>
-                    <div class="item-location">${item.location}</div>
-                    <div class="item-contact">${item.phone} |${item.email}</div>
+                    <div class="item-location">📍 ${item.location}</div>
+                    <div class="item-contact">📞 ${item.phone} | ✉️ ${item.email}</div>
                 `;
                 historyGrid.appendChild(card);
             });
