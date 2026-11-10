@@ -28,6 +28,55 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    const authForm = document.getElementById("auth-form");
+    if (authForm) {
+        let isLoginMode = false;
+        const authTitle = document.getElementById("auth-title");
+        const authSubmitBtn = document.getElementById("auth-submit-btn");
+        const toggleAuthMode = document.getElementById("toggle-auth-mode");
+        const toggleText = document.getElementById("toggle-text");
+
+        toggleAuthMode.addEventListener("click", (e) => {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+            authTitle.textContent = isLoginMode ? "Login to Account" : "Sign Up to Post";
+            authSubmitBtn.textContent = isLoginMode ? "Login" : "Create Account";
+            toggleText.textContent = isLoginMode ? "Don't have an account?" : "Already have an account?";
+            toggleAuthMode.textContent = isLoginMode ? "Sign up here" : "Login here";
+        });
+
+        authForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("auth-email").value;
+            const pass = document.getElementById("auth-pass").value;
+
+            let users = JSON.parse(localStorage.getItem("ecoDropUsers")) || [];
+
+            if (isLoginMode) {
+                const found = users.find(u => u.email === email && u.pass === pass);
+                if (found) {
+                    localStorage.setItem("ecoDropCurrentUser", JSON.stringify(found));
+                    alert("Login successful!");
+                    window.location.href = "post.html";
+                } else {
+                    alert("Invalid email or password!");
+                }
+            } else {
+                const exists = users.find(u => u.email === email);
+                if (exists) {
+                    alert("Account already exists! Please login.");
+                    return;
+                }
+                const newUser = { email, pass };
+                users.push(newUser);
+                localStorage.setItem("ecoDropUsers", JSON.stringify(users));
+                localStorage.setItem("ecoDropCurrentUser", JSON.stringify(newUser));
+                alert("Account created successfully!");
+                window.location.href = "post.html";
+            }
+        });
+    }
+
 
 
     const itemForm = document.getElementById("item-form");
