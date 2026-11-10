@@ -44,7 +44,7 @@ EcoDrop/
 
 ## Live Demo
 
-**Live Website:** [View Live App]()
+**Live Website:** [View Live App](https://michaelmulwam.github.io/EcoDrop/)
 
 
 ## Getting Started
