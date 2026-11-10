@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isPostPage = window.location.pathname.includes("post.html");
     if (isPostPage && !currentUser) {
         alert("Please create an account or log in first to list a product.");
-        window.location.href = "auth.html";
+        window.location.href = "login.html";
         return;
     }
 
@@ -24,31 +24,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "index.html";
             });
         } else {
-            navRight.innerHTML = `<a href="auth.html" class="btn-green" style="text-decoration: none; padding: 8px 16px;">+ Post Item</a>`;
+            navRight.innerHTML = `<a href="login.html" class="btn-green" style="text-decoration: none; padding: 8px 16px;">+ Post Item</a>`;
         }
     }
 
-    const authForm = document.getElementById("auth-form");
-    if (authForm) {
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) {
         let isLoginMode = false;
-        const authTitle = document.getElementById("auth-title");
-        const authSubmitBtn = document.getElementById("auth-submit-btn");
-        const toggleAuthMode = document.getElementById("toggle-auth-mode");
+        const loginTitle = document.getElementById("login-title");
+        const loginSubmitBtn = document.getElementById("login-submit-btn");
+        const toggleloginMode = document.getElementById("toggle-login-mode");
         const toggleText = document.getElementById("toggle-text");
 
-        toggleAuthMode.addEventListener("click", (e) => {
+        toggleloginMode.addEventListener("click", (e) => {
             e.preventDefault();
             isLoginMode = !isLoginMode;
-            authTitle.textContent = isLoginMode ? "Login to Account" : "Sign Up to Post";
-            authSubmitBtn.textContent = isLoginMode ? "Login" : "Create Account";
+            loginTitle.textContent = isLoginMode ? "Login to Account" : "Sign Up to Post";
+            loginSubmitBtn.textContent = isLoginMode ? "Login" : "Create Account";
             toggleText.textContent = isLoginMode ? "Don't have an account?" : "Already have an account?";
-            toggleAuthMode.textContent = isLoginMode ? "Sign up here" : "Login here";
+            toggleloginMode.textContent = isLoginMode ? "Sign up here" : "Login here";
         });
 
-        authForm.addEventListener("submit", (e) => {
+        loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const email = document.getElementById("auth-email").value;
-            const pass = document.getElementById("auth-pass").value;
+            const email = document.getElementById("login-email").value;
+            const pass = document.getElementById("login-pass").value;
 
             let users = JSON.parse(localStorage.getItem("ecoDropUsers")) || [];
 
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (editingId) {
             document.querySelector(".form-container h2").textContent = "EDIT ITEM FORM";
             document.getElementById("add-btn").textContent = "Update Item";
-            
+
             let items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
             const itemToEdit = items.find(i => i.id == editingId);
             if (itemToEdit) {
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (imageInput.files && imageInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(uploadEvent) {
+                reader.onload = function (uploadEvent) {
                     saveOrUpdateItem(title, category, phone, email, desc, location, uploadEvent.target.result);
                 };
                 reader.readAsDataURL(imageInput.files[0]);
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (featuredGrid) {
         const items = JSON.parse(localStorage.getItem("ecoDropItems")) || [];
         const topThree = items.slice(0, 3);
-        
+
         if (topThree.length === 0) {
             featuredGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No neighborhood drops yet. Be the first to post!</p>`;
         } else {
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-    
+
     const itemGrid = document.getElementById("item-grid");
     const searchInput = document.getElementById("search-input");
     const filterSelect = document.getElementById("filter-select");
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const historyGrid = document.getElementById("history-grid");
     if (historyGrid) {
         const history = JSON.parse(localStorage.getItem("ecoDropHistory")) || [];
-        
+
         if (history.length === 0) {
             historyGrid.innerHTML = `<p style="grid-column: span 3; color: #666;">No claimed items in history yet.</p>`;
         } else {
