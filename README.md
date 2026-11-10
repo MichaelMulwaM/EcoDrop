@@ -46,6 +46,21 @@ EcoDrop/
 
 **Live Website:** [View Live App](https://michaelmulwam.github.io/EcoDrop/)
 
+---
+
+## Screenshots
+
+* **Home Page:**  
+  ![Home Page](images/screenshots/homepage.jpg)
+
+* **Listed Items Page:**  
+  ![Listed Items Page](images/screenshots/listings.jpg.jpg)
+
+  * **History Page:**  
+  ![History Page](images/screenshots/history.jpg.jpg)
+
+---
+
 
 ## Getting Started
 
